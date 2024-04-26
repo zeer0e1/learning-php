@@ -1,18 +1,6 @@
 <?php
 
-function exibeMensagemLancamento (int $ano): void {
-    if ($ano > 2022) {
-        echo "Esse filme é um lançamento\n";
-    }elseif ($ano > 2020 ){
-        echo "Esse filme não é antigo\n";
-    }else{
-        echo "Esse filme é antigo\n";
-    }
-}
-
-function incluidoNoPlano( bool $planoPrime, int $anoLancamento): bool{
-   return $planoPrime || $anoLancamento < 2020;
-}
+require __DIR__ . "/src/functions.php";
 
 echo "Bem-vindo(a) ao screen math!\n";
 
@@ -54,12 +42,13 @@ $genero  = match ($nomeFilme) {
 echo "Genero: $genero\n";
 
 
-$filme = [
-    "nome" => "Thor: Ragnarok",
-    "ano" => 2021,
-    "nota" => 7.8,
-    "genero" => "super heroi",
-];
+$filme = criaFilme(
+    nome:"Thor: Ragnarok",
+    anoLancamento:2021,
+    nota:7.8,
+    genero: "super heroi"
+);
+
 
 var_dump($notas);
 sort($notas);
@@ -71,4 +60,10 @@ $posicaoDoisPontos = strpos($filme['nome'],':');
 var_dump($filme['nome']);
 var_dump($posicaoDoisPontos);
 
-var_dump(substr($filme['nome'],0, $posicaoDoisPontos));
+//var_dump(substr($filme['nome'],0, $posicaoDoisPontos));
+
+//var_dump(json_decode('{"nome":"Thor: Ragnarok","ano":2021,"nota":7.8,"genero":"super heroi"}',true));
+
+$filmeComoStringJson = json_encode($filme);
+file_put_contents(__DIR__ ."/filmes.json", $filmeComoStringJson);
+
