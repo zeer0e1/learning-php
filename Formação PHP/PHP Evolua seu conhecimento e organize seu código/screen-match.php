@@ -61,4 +61,14 @@ $filme = [
     "genero" => "super heroi",
 ];
 
-echo $filme['nome'];
+var_dump($notas);
+sort($notas);
+var_dump($notas);
+$menorNota = min($notas);
+echo $menorNota;
+$posicaoDoisPontos = strpos($filme['nome'],':');
+
+var_dump($filme['nome']);
+var_dump($posicaoDoisPontos);
+
+var_dump(substr($filme['nome'],0, $posicaoDoisPontos));
